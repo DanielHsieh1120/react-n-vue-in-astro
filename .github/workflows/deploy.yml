@@ -31,6 +31,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test --if-present
+    - run: unset AWS_SESSION_TOKEN
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
