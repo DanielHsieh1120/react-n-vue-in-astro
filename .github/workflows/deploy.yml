@@ -35,9 +35,10 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         include-hidden-files: true
+        name: artifact
         path: |
-          dist
-          public
+          dist/index.html
+          public/favicon.svg
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,11 +49,11 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
+        name: artifact
         path: |
-          dist
-          public
-    - run: ls -la
-    - run: zip -r artifact.zip . -i dist/* -i public/*
+          src
+    - run: cd src && ls -la
+    - run: zip -r artifact.zip dist public
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
