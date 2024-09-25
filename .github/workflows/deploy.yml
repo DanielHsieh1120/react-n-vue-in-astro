@@ -34,7 +34,7 @@ jobs:
     - run: ls -la
     - uses: actions/upload-artifact@master
       with:
-        name: upload-dist
+        name: dist-artifact
         include-hidden-files: true
         path: dist
 
@@ -47,8 +47,9 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: dist
+        name: dist-artifact
         path: dist
+    - run: zip -r dist-artifact.zip dist/
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
