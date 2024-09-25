@@ -52,7 +52,7 @@ jobs:
           dist
           public
     - run: ls -la
-    - run: zip -r artifact.zip . -i dist/
+    - run: zip -r artifact.zip . -i dist/* -i public/*
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
