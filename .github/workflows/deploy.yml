@@ -36,7 +36,7 @@ jobs:
       with:
         name: upload-dist
         include-hidden-files: true
-        path: /dist
+        path: dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: download-dist
-        path: /dist
+        path: dist
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
