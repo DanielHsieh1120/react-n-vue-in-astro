@@ -36,7 +36,9 @@ jobs:
       with:
         name: dist-artifact
         include-hidden-files: true
-        path: dist
+        path: |
+          dist
+          public
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,9 +49,11 @@ jobs:
     steps:
     - uses: actions/download-artifact@master
       with:
-        name: dist-artifact
-        path: dist
+        path: |
+          dist
+          public
     - run: zip -r dist-artifact.zip dist/
+    - run: zip -r public.zip public/
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
