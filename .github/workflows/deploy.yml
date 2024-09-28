@@ -31,7 +31,7 @@ jobs:
         shell: bash
     strategy:
       matrix:
-        node: ${{ [fromJson(needs.mock.outputs.mock-output-one)] }}
+        node: ${{ fromJson(needs.mock.outputs.mock-output-one) }}
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
