@@ -10,15 +10,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  mock:
+    runs-on: ubuntu-latest
+    outputs:
+      mock-output-one: 18
+      mock-output-two: 20
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@v4
+    - run: echo "Mocking deployment"
 
+
+  build:
+    needs: [mock]
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     strategy:
       matrix:
-        node: [20]
+        node: ${{ fromJson(needs.mock.outputs.mock-output-three) }}
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
