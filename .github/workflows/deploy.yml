@@ -34,7 +34,7 @@ jobs:
         node: 
           - ${{ fromJson(needs.mock.outputs.mock-output-one) }}
           - ${{ fromJson(needs.mock.outputs.mock-output-two) }}
-          - ${{ fromJson(needs.mock.outputs.mock-output-three) }}
+          - ${{ needs.mock.outputs.mock-output-three && fromJson(needs.mock.outputs.mock-output-three) }}
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
